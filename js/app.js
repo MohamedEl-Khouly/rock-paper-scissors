@@ -13,7 +13,8 @@ function computerPlay()
 // 2. user Play
 
 function userPlay(){
-
+	let choice = prompt('player turn\n enter \n rock, paper or scissors');
+	return choice.toLowerCase()
 }
 
 // 3. play round
@@ -38,3 +39,5 @@ function playRound(playerSelection , computerSelection ){
 		}
 	}
 }
+
+console.log(playRound(userPlay(),computerPlay()));
