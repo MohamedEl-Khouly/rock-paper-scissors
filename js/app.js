@@ -28,16 +28,35 @@ function playRound(playerSelection , computerSelection ){
 		// check player selection
 		switch(playerSelection){
 			case 'rock':
-				return (computerSelection =='scissors')? 'player win':'computer win';
+				return (computerSelection =='scissors')? 'player':'computer';
 				break;
 			case 'paper':
-				return (computerSelection =='rock')? 'player win':'computer win';
+				return (computerSelection =='rock')? 'player':'computer';
 				break;
 			case 'scissors':
-				return (computerSelection =='paper')? 'player win':'computer win';
+				return (computerSelection =='paper')? 'player':'computer';
 				break;
 		}
 	}
 }
 
-console.log(playRound(userPlay(),computerPlay()));
+// Main function
+function game(){
+	for (let i = 0; i < 5; i++) {
+		let computerSelection = computerPlay();
+		let playerSelection = userPlay();
+		roundResult = playRound(playerSelection,computerSelection);
+		if (roundResult === 'player') {
+			console.log("You win")
+			console.log(`${playerSelection} beats ${computerSelection}`)
+		} else if (roundResult === 'computer') {
+			console.log("You Lose")
+			console.log(`${computerSelection} beats ${playerSelection}`)
+		} else {
+			console.log("Its a tie")
+			console.log(`${playerSelection} equals ${computerSelection}`)
+		}		
+	}
+}
+
+game()
