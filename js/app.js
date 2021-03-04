@@ -42,20 +42,25 @@ function playRound(playerSelection , computerSelection ){
 
 // Main function
 function game(){
+	let playerScore = 0;
+	let computerScore = 0;
 	for (let i = 0; i < 5; i++) {
 		let computerSelection = computerPlay();
 		let playerSelection = userPlay();
 		roundResult = playRound(playerSelection,computerSelection);
 		if (roundResult === 'player') {
+			playerScore++;
 			console.log("You win")
 			console.log(`${playerSelection} beats ${computerSelection}`)
 		} else if (roundResult === 'computer') {
+			computerScore++;
 			console.log("You Lose")
 			console.log(`${computerSelection} beats ${playerSelection}`)
 		} else {
 			console.log("Its a tie")
 			console.log(`${playerSelection} equals ${computerSelection}`)
 		}		
+		console.log(`player : ${playerScore}\ncomputer : ${computerScore}`);
 	}
 }
 
