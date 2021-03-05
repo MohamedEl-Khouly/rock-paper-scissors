@@ -1,0 +1,19 @@
+/*General settings*/
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: arial, sans-serif;
+	background-color: #000;
+	color: #fff;
+	font-size: 14px;
+}
+
+/* Header Rules*/
+.header {
+	text-align: center;
+	padding-top: 30px;
+}
