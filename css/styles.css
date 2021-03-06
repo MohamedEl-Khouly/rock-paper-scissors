@@ -22,3 +22,12 @@ body {
 	margin: 0 auto;
 	width: 50%;
 }
+
+/*
+* Hidden class selector
+* removes undesired
+* component of the screen 
+*/
+.hidden {
+	display: none;
+}
