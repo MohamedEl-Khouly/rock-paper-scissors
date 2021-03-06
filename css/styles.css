@@ -20,14 +20,23 @@ body {
 
 /* Main Section Rules*/
 .main {
-	margin: auto auto;
-	width: 50%;
+	margin: 5% auto;
+	width: 75%;
 }
 
 .sub-list {
 	margin-left: 30px;
 }
 
+.pre-game {
+	font-size: large;
+}
+
+#start-btn {
+	background-color: darkgreen;
+	border: #000 2px solid;
+	border-radius: 2px;
+}
 /*
 * Hidden class selector
 * removes undesired
