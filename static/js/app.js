@@ -64,6 +64,12 @@ function game() {
 }
 
 //###################################################################################################
+/**
+ *  Starting game 
+ * start button onclick event 
+ * hides the pregame setup and 
+ * starts the game.
+ */
 const startBtn = document.getElementById("start-btn");
 const pregameSection = document.getElementById('pre-game');
 const gameSection = document.getElementById('game');
