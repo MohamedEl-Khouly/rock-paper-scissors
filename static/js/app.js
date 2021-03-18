@@ -129,6 +129,7 @@ startBtn.onclick = function (e) {
 	gameSection.classList.remove('hidden');
 	playerScore = 0;
 	computerScore = 0;
+	infoView.textContent = '';
 	displayScores();
 	playerBtns.forEach(btn => {
 		btn.addEventListener('click', playRound);

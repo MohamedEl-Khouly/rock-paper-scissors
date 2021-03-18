@@ -69,14 +69,22 @@ ul {
 		0 17px 50px 0 rgba(0, 0, 0, 0.19);
 	cursor: pointer;
 }
+.result {
+	color: #ba7206;
+	height: 100px;
+	width: 250px;
+	margin: 5% auto;
+	font-size: larger;
+}
 /* Game styling*/
 .game {
 	font-size: large;
 }
 .info {
-	height: 30px;
-	width: 90%;
-	padding-left: 10%;
+	height: 50px;
+	width: 300px;
+	margin: 5% auto;
+	color: #ba7206;
 }
 
 .score {
@@ -116,7 +124,7 @@ ul {
 }
 
 .selection {
-	border: #ff0 5px solid;
+	border: #ba7206 5px solid;
 	border-radius: 3px;
 	z-index: 15;
 }
