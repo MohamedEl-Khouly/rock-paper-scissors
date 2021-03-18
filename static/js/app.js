@@ -41,13 +41,7 @@ function computerPlay() {
 	return result;
 }
 
-// 2. player choice 
-function userPlay() {
-	let choice = prompt('player turn\n enter \n rock, paper or scissors');
-	return choice.toLowerCase()
-}
-
-// 3. One Round result
+//2. One Round result
 function roundWinner(playerSelection, computerSelection) {
 	// check for tie 
 	if (playerSelection === computerSelection) {
@@ -69,13 +63,13 @@ function roundWinner(playerSelection, computerSelection) {
 	}
 }
 
-// 4. display scores 
+// 3. display scores 
 function displayScores() {
 	computerScoreView.textContent = computerScore;
 	playerScoreView.textContent = playerScore;
 }
 
-// 5. GameOver
+// 4. GameOver
 function gameOver() {
 	if ((playerScore !== 5) && (computerScore !== 5)) return; // if no one reached 5
 	playerBtns.forEach(btn => {
@@ -92,7 +86,8 @@ function gameOver() {
  * Begin Main Functions
 */
 
-function playRound(e) {
+// One round function 
+function playRound() {
 	this.classList.add('selection');
 	playerSelection = this.dataset.choice;
 	computerSelection = computerPlay();
@@ -115,6 +110,7 @@ function playRound(e) {
 	}, 1000);
 	gameOver();
 }
+
 /**
  * End Main Functions
  * Begin Events
