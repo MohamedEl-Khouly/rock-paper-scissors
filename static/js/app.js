@@ -1,7 +1,39 @@
-// Game helper functions
+/**
+ * A script responsible for managing  the game of 
+ * Rock Paper Scissors 
+ *  
+ * Dependencies: None
+ *
+ * JS Version: ES2015/ES6
+ *
+ * JS Standard: ESlint
+ * @author Mohamed El-Khouly <msirag95@gmail.com>
+*/
 
-// 1. computer play
+/**
+ * Define Global Variables
+ *
+*/
+const pregameSection = document.getElementById('pre-game'),
+	gameSection = document.getElementById('game'),
+	startBtn = document.getElementById("start-btn"),
+	playerScoreView = document.querySelector(".player-score span"),
+	computerScoreView = document.querySelector(".computer-score span"),
+	infoView = document.querySelector(".info"),
+	playerBtns = document.querySelectorAll('.player-choice button');
 
+let computerScore = 0,
+	computerSelection = '',
+	playerScore = 0,
+	playerSelection = '';
+
+/**
+ * End Global Variables
+ * Start Helper Functions
+ *
+*/
+
+// 1. computer choice
 function computerPlay() {
 	options = ['rock', 'paper', 'scissors'];
 	choice = Math.floor(Math.random() * 3);
@@ -9,16 +41,14 @@ function computerPlay() {
 	return result;
 }
 
-// 2. user Play
-
+// 2. player choice 
 function userPlay() {
 	let choice = prompt('player turn\n enter \n rock, paper or scissors');
 	return choice.toLowerCase()
 }
 
-// 3. play round
-
-function playRound(playerSelection, computerSelection) {
+// 3. One Round result
+function roundWinner(playerSelection, computerSelection) {
 	// check for tie 
 	if (playerSelection === computerSelection) {
 		return 'Tie';
@@ -39,41 +69,73 @@ function playRound(playerSelection, computerSelection) {
 	}
 }
 
-// Main function
-function game() {
-	let playerScore = 0;
-	let computerScore = 0;
-	for (let i = 0; i < 5; i++) {
-		let computerSelection = computerPlay();
-		let playerSelection = userPlay();
-		roundResult = playRound(playerSelection, computerSelection);
-		if (roundResult === 'player') {
-			playerScore++;
-			console.log("You win")
-			console.log(`${playerSelection} beats ${computerSelection}`)
-		} else if (roundResult === 'computer') {
-			computerScore++;
-			console.log("You Lose")
-			console.log(`${computerSelection} beats ${playerSelection}`)
-		} else {
-			console.log("Its a tie")
-			console.log(`${playerSelection} equals ${computerSelection}`)
-		}
-		console.log(`player : ${playerScore}\ncomputer : ${computerScore}`);
-	}
+// 4. display scores 
+function displayScores() {
+	computerScoreView.textContent = computerScore;
+	playerScoreView.textContent = playerScore;
 }
 
-//###################################################################################################
+// 5. GameOver
+function gameOver() {
+	if ((playerScore !== 5) && (computerScore !== 5)) return; // if no one reached 5
+	playerBtns.forEach(btn => {
+		btn.removeEventListener('click', playRound);
+	});
+	const winner = playerScore === 5 ? 'PLAYER' : 'Computer';
+	const result = document.querySelector('.result');
+	result.innerHTML = `<h3>${winner} WINS</h3>`;
+	pregameSection.classList.remove('hidden');
+	gameSection.classList.add('hidden');
+}
 /**
- *  Starting game 
- * start button onclick event 
+ * End Helper Functions
+ * Begin Main Functions
+*/
+
+function playRound(e) {
+	this.classList.add('selection');
+	playerSelection = this.dataset.choice;
+	computerSelection = computerPlay();
+	const computerBtn = document.querySelector(`.computer-choice button[data-choice=${computerSelection}]`);
+	computerBtn.classList.add('selection');
+	result = roundWinner(playerSelection, computerSelection);
+	if (result === 'player') {
+		playerScore++;
+		infoView.textContent = `${playerSelection} beats ${computerSelection}`;
+	} else if (result === 'computer') {
+		computerScore++;
+		infoView.textContent = `${computerSelection} beats ${playerSelection}`;
+	} else {
+		infoView.textContent = "A Tie";
+	}
+	displayScores();
+	setTimeout(() => {
+		this.classList.remove('selection');
+		computerBtn.classList.remove('selection');
+	}, 1000);
+	gameOver();
+}
+/**
+ * End Main Functions
+ * Begin Events
+ *
+*/
+
+
+/**
+ *  Starting game event 
  * hides the pregame setup and 
  * starts the game.
  */
-const startBtn = document.getElementById("start-btn");
-const pregameSection = document.getElementById('pre-game');
-const gameSection = document.getElementById('game');
+
 startBtn.onclick = function (e) {
 	pregameSection.classList.add('hidden');
 	gameSection.classList.remove('hidden');
+	playerScore = 0;
+	computerScore = 0;
+	displayScores();
+	playerBtns.forEach(btn => {
+		btn.addEventListener('click', playRound);
+	});
 };
+
